@@ -1,73 +1,189 @@
-import os
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
-from tqdm import tqdm
+import os
+import random
 import json
-from dotenv import load_dotenv
+from tqdm import tqdm
 
-# Load variabel dari file .env
-load_dotenv()
+# Function to create a session with rotating user agents
+def create_session():
+    user_agents = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+    ]
+    session = requests.Session()
+    session.headers.update({
+        "User-Agent": random.choice(user_agents),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Connection": "keep-alive",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Cache-Control": "max-age=0"
+    })
+    return session
 
-# Rentang halaman yang ingin diambil
+# Ensure data directory exists
+os.makedirs("data", exist_ok=True)
+
+# Base URL untuk scraping
+base_url = "https://sinta.kemdikbud.go.id/google?page="
+
+# Inisialisasi sesi request
+session = create_session()
+
+# Rentang halaman yang ingin di-scrape
 start_page = 6673
 end_page = 7506
 
-# URL dasar SINTA Google Scholar
-base_url = "https://sinta.kemdikbud.go.id/google?page={}" 
+# Simpan semua hasil scraping
+all_data = []
 
-# Header untuk menghindari pemblokiran
-headers = {"User-Agent": os.getenv("USER_AGENT")}
+# Load checkpoint if exists
+checkpoint_file = "data/checkpoint.json"
+if os.path.exists(checkpoint_file):
+    try:
+        with open(checkpoint_file, "r", encoding="utf-8") as f:
+            checkpoint = json.load(f)
+        all_data = checkpoint["data"]
+        start_page = checkpoint["last_page"] + 1
+        print(f"Melanjutkan scraping dari halaman {start_page}...")
+    except Exception as e:
+        print(f"⚠️ Error loading checkpoint: {e}")
 
-# List untuk menyimpan hasil scraping
-data_jurnal = []
+# Function to save checkpoint
+def save_checkpoint(data, last_page):
+    checkpoint = {
+        "data": data,
+        "last_page": last_page,
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
+    }
+    with open(checkpoint_file, "w", encoding="utf-8") as f:
+        json.dump(checkpoint, f, ensure_ascii=False, indent=4)
+    print(f"Checkpoint tersimpan pada halaman {last_page}")
 
-# Loop otomatis melalui semua halaman dari 6673 hingga 7506
-for page in tqdm(range(start_page, end_page + 1)):
-    url = base_url.format(page)  # Generate URL untuk halaman tertentu
-    response = requests.get(url, headers=headers)
+# Scrape each page
+try:
+    for page in tqdm(range(start_page, end_page + 1), desc="Scraping halaman"):
+        url = base_url + str(page)
+        print(f"Scraping halaman {page}...")
+        
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                if attempt > 0:
+                    session = create_session()
+                
+                response = session.get(url, timeout=30)
+                
+                if response.status_code == 200:
+                    break
+                elif response.status_code == 429 or response.status_code == 403:
+                    wait_time = (2 ** attempt) * 5 + random.uniform(1, 5)
+                    print(f"Rate limited (kode {response.status_code}). Menunggu {wait_time:.1f} detik...")
+                    time.sleep(wait_time)
+                else:
+                    print(f"Status kode: {response.status_code}. Mencoba lagi...")
+                    time.sleep(5)
+            except Exception as e:
+                print(f"Error pada percobaan {attempt+1}: {e}")
+                time.sleep(5)
+        
+        if response.status_code != 200:
+            print(f"Gagal mengakses halaman {page} setelah {max_retries} percobaan, lanjut ke halaman berikutnya...")
+            continue
+        
+        soup = BeautifulSoup(response.text, "html.parser")
+        
+        # Temukan semua artikel
+        articles = soup.find_all("div", class_="ar-title")
+        
+        if not articles:
+            print(f"Tidak ditemukan artikel pada halaman {page}. Kemungkinan struktur halaman berubah.")
+            articles = soup.find_all("div", class_="article-title")
+            if not articles:
+                print(f"Tidak dapat menemukan artikel dengan class alternatif. Melewati halaman {page}.")
+                continue
+        
+        page_data = []
+        for article in articles:
+            try:
+                # Judul publikasi
+                title_tag = article.find("a")
+                title = title_tag.text.strip() if title_tag else "N/A"
+                link = title_tag["href"] if title_tag and "href" in title_tag.attrs else "N/A"
+                
+                # Penulis
+                authors_tag = article.find_next("div", class_="ar-meta") or article.find_next("div", class_="authors")
+                authors = authors_tag.text.replace("Authors :", "").strip() if authors_tag else "N/A"
+                
+                # Tahun publikasi
+                year_tag = article.find_next("a", class_="ar-year") or article.find_next("div", class_="year")
+                year = year_tag.text.strip() if year_tag else "N/A"
+                
+                # Jumlah sitasi
+                cited_tag = article.find_next("a", class_="ar-cited") or article.find_next("div", class_="citation")
+                cited = cited_tag.text.replace("cited", "").strip() if cited_tag else "0"
+                
+                # Institusi
+                institution_tag = article.find_next("a", class_="ar-pub") or article.find_next("a", class_="affiliation")
+                institution = institution_tag.text.strip() if institution_tag else "N/A"
+                
+                # Simpan data ke dalam list
+                article_data = {
+                    "Halaman": page,
+                    "Judul": title,
+                    "Tautan": link,
+                    "Penulis": authors,
+                    "Tahun": year,
+                    "Sitasi": cited,
+                    "Institusi": institution
+                }
+                page_data.append(article_data)
+            except Exception as e:
+                print(f"Error memproses artikel: {e}")
+        
+        all_data.extend(page_data)
+        print(f"Berhasil mengambil {len(page_data)} artikel dari halaman {page}")
+        
+        # Save checkpoint setiap 10 halaman
+        if page % 10 == 0:
+            save_checkpoint(all_data, page)
+            
+            # Simpan data sementara ke CSV
+            temp_df = pd.DataFrame(all_data)
+            temp_df.to_csv(f"data/hasil_scraping_temp_{page}.csv", index=False)
+            print(f"Data sementara tersimpan dalam data/hasil_scraping_temp_{page}.csv")
+        
+        # Delay untuk menghindari pemblokiran
+        sleep_time = random.uniform(1.5, 3.5)
+        time.sleep(sleep_time)
 
-    # Cek apakah request berhasil
-    if response.status_code != 200:
-        print(f"Gagal mengakses halaman {page}, melanjutkan ke halaman berikutnya...")
-        continue
+except KeyboardInterrupt:
+    print("\n Scraping dihentikan manual oleh pengguna")
+    save_checkpoint(all_data, page)
+except Exception as e:
+    print(f"\n Error tidak terduga: {e}")
+    if 'page' in locals():
+        save_checkpoint(all_data, page)
 
-    # Parsing HTML dengan BeautifulSoup
-    soup = BeautifulSoup(response.text, "html.parser")
+# Konversi ke DataFrame dan simpan ke CSV
+df = pd.DataFrame(all_data)
+df.to_csv("data/hasil_scraping.csv", index=False)
+print(f"Scraping selesai! Total {len(all_data)} artikel dari {start_page} sampai {end_page if 'page' not in locals() else page}")
+print("Data disimpan dalam data/hasil_scraping.csv")
 
-    # Temukan semua jurnal dalam halaman (Pastikan class sesuai dengan struktur SINTA)
-    journals = soup.find_all("div", class_="article-title")  # Perlu dicek class HTML yang sesuai
-
-    for journal in journals:
-        title = journal.text.strip()
-        link = journal.find("a")["href"] if journal.find("a") else "N/A"
-
-        # Simpan ke list hasil scraping
-        data_jurnal.append({"Title": title, "Link": link})
-
-    # Tunggu beberapa detik agar tidak diblokir
-    time.sleep(2)
-
-print(f"Scraping selesai! Total data yang dikumpulkan: {len(data_jurnal)}")
-
-# Simpan ke CSV
-df_sinta = pd.DataFrame(data_jurnal)
-df_sinta.to_csv("jurnal_sinta_google_filtered.csv", index=False, encoding="utf-8")
-print("Data jurnal berhasil disimpan dalam format CSV!")
-
-# Simpan ke JSON
-with open("jurnal_sinta_google_filtered.json", "w", encoding="utf-8") as f:
-    json.dump(data_jurnal, f, ensure_ascii=False, indent=4)
-print("Data jurnal berhasil disimpan dalam format JSON!")
-
-# Simpan ke TXT
-with open("jurnal_sinta_google_filtered.txt", "w", encoding="utf-8") as f:
-    for item in data_jurnal:
-        f.write(f"Title: {item['Title']}, Link: {item['Link']}\n")
-print("Data jurnal berhasil disimpan dalam format TXT!")
-
-# Menampilkan semua data yang dikumpulkan
-print("\nMenampilkan semua data yang dikumpulkan:\n")
-for item in data_jurnal:
-    print(f"Title: {item['Title']}, Link: {item['Link']}")
+# Tampilkan statistik
+print("\nStatistik:")
+print(f"Total artikel: {len(df)}")
+print(f"Rentang tahun: {df['Tahun'].min()} - {df['Tahun'].max()}")
+print(f"Total sitasi: {df['Sitasi'].astype(int).sum()}")
+print(f"Institusi unik: {len(df['Institusi'].unique())}")
