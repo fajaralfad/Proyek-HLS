@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SINTA - Science and Technology Index</title>
+    <meta name="description" content="SINTA | Science and Technology Index">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="shortcut icon" type="image/png" href="https://sinta.kemdikbud.go.id/public/assets/img/favicon_sinta.png" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/bootstrap-litera.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/select2.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/select2-bootstrap4.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/elusive-icons.min.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/animate.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/morphext.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/main.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/flag-icons.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/responsive.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/datamaps.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/plugin/autocomplete/jquery.autocomplete.css" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/autocomplete.css" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/author/styles/alert.css">
+
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css" type="text/css" />
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-select-country@4.0.0/dist/css/bootstrap-select-country.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" type="text/css" />
+
+    <style type="text/css">
+        #mynetwork {
+            width: auto;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+
+        
+    </style>
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+
+
+</head>
+
+<body>
+
+    
+    
+    <div class="row no-gutters">
+    <div class="col-md-8">
+
+        <div class="navi animate__animated animate__slideInDown"  >
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="https://sinta.kemdikbud.go.id">
+            <img src="https://sinta.kemdikbud.go.id/public/assets/img/brand_sinta.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            <span class="brand-text">SINTA</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id"><i class="el el-home-alt"></i></a>
+                </li>
+                
+                <!-- <li class="nav-item">
+                                <a class="nav-link" href="#!">About</a>
+                            </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/authors">Author</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/subjects">Subjects</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Affiliations
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/affiliations">Affiliations</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/departments">Departments</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/journals">Journal</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/books">Book</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/iprs">IPR</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/researches">Researches</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/comservices">Comunity Services</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/scopus">Scopus Documents</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/home/checkquartilescopus">Check Quart. Scopus</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/google">GS Documents</a>
+                        
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/home/faq">FAQ</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/wcu">WCU</a>
+                </li>
+                
+                                    <li class="nav-item">
+                        <a class="nav-link" href="https://sinta.kemdikbud.go.id/logins/registration">Registration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://sinta.kemdikbud.go.id/logins">Login</a>
+                    </li>
+                            </ul>
+        </div>
+    </nav>
+</div>
+
+        <div class="content">
+            <div class="content-box animate__animated animate__zoomIn">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <div class="banner"
+                                style="background-image: url('img/banner.jpg'); background-size: cover;">
+                            </div> -->
+
+                        <div class="jumbotron bg-light bg-card-red">
+                            <h1>Sinta is Evolving</h1>
+                            <p>Sinta (Science and Technology Index), delivering acces to citations and expertise in Indonesia. 
+                                Web-based research information system offering fast access, easy and comprehensive to measure 
+                                the performance of researchers, institutions and journals in Indonesia. Sinta provide benchmarks and analysis, 
+                                identification of research strength of each institution to develop collaborative partnerships, 
+                                to analyze the trend of research and expert directories.</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-4">
+                        <div class="stat">
+                            Statistics
+                        </div>
+                        </div> -->
+                </div>
+
+                <div class="search-box mt-4">
+                    <form method="GET" action="https://sinta.kemdikbud.go.id/home/search" class="d-none d-sm-block d-md-none d-lg-block d-xl-block">
+                        <div class="form-row">
+                            <div class="col-md-2">
+                                <select name="type" id="type" class="form-control select2" id="select2-md">
+                                    <option value="author" selected>Author</option>
+                                    <option value="affiliation">Affiliation</option>
+                                    <option value="journal">Journal</option>
+                                    <option value="google">Article GS</option>
+                                    <option value="scopus">Article Scopus</option>
+                                    <option value="research">Researches</option>
+                                    <option value="service">Com. Service</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <input type="text" name="q" id="q" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <!-- <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">
+                                            <a href="#!"><i class="el el-cog"></i> Advanced</a>
+                                        </span>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <form method="GET" action="https://sinta.kemdikbud.go.id/home/search" class="d-sm-block d-md-block d-lg-none d-xl-none">
+                        <input type="text" class="form-control" name="q" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="row no-gutters mt-2">
+                            <div class="col pr-1">
+                                <select name="type" class="form-control select2" id="select2-xs">
+                                    <option value="author" selected>Author</option>
+                                    <option value="affiliation">Affiliation</option>
+                                    <option value="journal">Journal</option>
+                                    <option value="google">Article GS</option>
+                                    <option value="scopus">Article Scopus</option>
+                                    <option value="research">Researches</option>
+                                    <option value="service">Com. Service</option>
+                                </select>
+                            </div>
+                            <div class="col-2 pl-1">
+                                <button type="button" name="" id="" class="btn btn-secondary btn-lg btn-block btn-search-xs">
+                                    <i class="el el-search"></i>
+                                </button>
+                            </div>
+                            <div class="col-2 pl-1">
+                                <button type="button" name="" id="" class="btn btn-default btn-lg btn-block btn-search-xs">
+                                    <i class="el el-cog"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="stat-marque mt-4 animate__animated animate__fadeIn delay-1">
+                <div class="row no-gutters">
+                    <div class="col-md-2">Statistics <i class="el el-chevron-right"></i> </div>
+                    <div class="col-md">
+                        <div class="rotate">
+                            <div>Authors : 307.325</div>
+                            <div>Affiliations : 5.471</div>
+                            <div>Departments : 2.355</div>
+                            <div>Journals : 13.522</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <small><a href="#!" id="more_statistic">More <i class="el el-plus-sign"></i></a></small>
+                    </div>
+                </div>
+            </div>
+            <div class="goto-insight mt-4 d-sm-block d-md-none d-lg-none d-xl-none text-center">
+                Get more detailed Information with SINTA Insight
+                <a name="" id="" class="btn btn-block btn-warning mt-3" href="https://sinta.kemdikbud.go.id/insight" role="button">Go to Insight</a>
+            </div>
+            <!-- <div id="statistic2" class="row mt-4 animate__animated animate__fadeIn delay-2" style="display: none;"> -->
+            <div id="statistic2" class="row mt-4" style="display: none;">
+                <div class="col-md">
+                    <div class="stat-content bg-card-simple">
+                        <div class="stat-text">307.325</div>
+                        <div class="stat-subtext">Authors</div>
+                    </div>
+                </div>
+                <!-- <div class="col-md animate__animated animate__fadeIn delay-3"> -->
+                <div class="col-md">
+                    <div class="stat-content bg-card-simple">
+                        <div class="stat-text">5.471</div>
+                        <div class="stat-subtext">Affiliations</div>
+                    </div>
+                </div>
+                <!-- <div class="col-md animate__animated animate__fadeIn delay-4"> -->
+                <div class="col-md">
+                    <div class="stat-content bg-card-simple">
+                        <div class="stat-text">2.355</div>
+                        <div class="stat-subtext">Departments</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-box mt-4 col animate__animated animate__fadeIn delay-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="content-network">
+                            <small class="ml-2">Our Network</small>
+                            <ul class="d-md-block d-lg-block d-xl-block">
+                                <li>
+                                    <a href="http://garuda.kemdikbud.go.id" target="_blank">
+                                        <img src="https://sinta.kemdikbud.go.id/public/assets/img/garuda_logo.png" height="24" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://rama.kemdikbud.go.id" target="_blank">
+                                        <img src="https://sinta.kemdikbud.go.id/public/assets/img/rama_logo.png" height="24" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://anjani.kemdikbud.go.id" target="_blank">
+                                        <img src="https://sinta.kemdikbud.go.id/public/assets/img/anjani_logo.png" height="24" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://idmenulis.kemdikbud.go.id" target="_blank">
+                                        <img src="https://sinta.kemdikbud.go.id/public/assets/img/idmenulis_logo.png" height="24" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://bima.kemdikbud.go.id/" target="_blank">
+                                        <img src="https://sinta.kemdikbud.go.id/public/assets/img/bima-dikti.png" height="24" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a  href="http://arjuna.kemdikbud.go.id" target="_blank">
+                                        <img src="https://sinta.kemdikbud.go.id/public/assets/img/arjuna_logo.png" height="24" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content-network text-md-left text-center">
+                            <small class="ml-2 text-md-left text-center">Email & Social Media</small>
+                            <br><br>
+                            <table>
+                                <tr>
+                                    <td width="100" class="text-left">Helpdesk</td>
+                                    <td width="10" class="text-left">:</td>
+                                    <td class="text-left"><a href="mailto:publikasi.drtpm@kemdikbud.go.id">publikasi.drtpm@kemdikbud.go.id</a></td>
+                                </tr>
+                                <tr>
+                                    <td width="100" class="text-left"></td>
+                                    <td width="10" class="text-left"></td>
+                                    <td class="text-left"><a href="mailto:hdsinta@kemdikbud.go.id">hdsinta@kemdikbud.go.id</a></td>
+                                </tr>
+                                <tr>
+                                    <td width="100" class="text-left">Instagram</td>
+                                    <td width="10" class="text-left">:</td>
+                                    <td class="text-left"><a href="https://www.instagram.com/sinta.kemdikbud/" target="_blank"> sinta.kemdikbud</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="stat-marque mt-4 animate__animated animate__fadeIn delay-4">
+                <div class="row no-gutters">
+                    <!-- <div class="col-md-12 text-center"><a href="http://ringkas.kemdikbud.go.id/PemutakhiranSINTA" target="_blank">Download Manual Book</a> </div>-->
+					<div class="col-md-12 text-center"><a href="https://bit.ly/ManualBookSinta" target="_blank">Download Manual Book</a> </div>
+                </div>
+            </div>
+
+
+            <div class="content-box bg-card-default bg-secondary mt-4 col animate__animated animate__fadeIn delay-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-md logo-sponsor">
+                                <img src="https://sinta.kemdikbud.go.id/public/assets/img/dikbud_logo.png" alt="kemdikbud" title="Kementerian Pendidikan dan Kebudayaan">
+                                <!-- <div class="title">KEMDIKBUD</div> -->
+                                <!-- <div class="subtitle">Kementrian Riset dan Teknologi / Badan Riset & Inovasi Nasional</div> -->
+
+                                <div class="text-white">Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia</div>
+                                <!-- <br> -->
+                                <div><small class="text-white">Supported By:</small></div>
+                                <img src="https://sinta.kemdikbud.go.id/public/assets/img/brin_logo.png" alt="brin" title="Badan Riset dan Inovasi Nasional" style="height: 40px !important;">                    
+                                <!-- <div class="title">BRIN</div> -->
+                                <!-- <div class="subtitle">Kementrian Riset dan Teknologi / Badan Riset & Inovasi Nasional</div> -->
+
+                                <img src="https://sinta.kemdikbud.go.id/public/assets/img/lpdp_putih_logo.png" alt="LPDP" title="Lembaga Pengelola Dana Pendidikan"  style="height: 40px !important;">
+                                <!-- <div class="title">LPDP</div> -->
+                                <!-- <div class="subtitle">Kementrian Riset dan Teknologi / Badan Riset & Inovasi Nasional</div> -->
+                            </div>
+
+
+                        </div>
+                        <div class="text-small text-center text-white copyright">
+                            Hak Cipta Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi. Republik Indonesia  &copy 2020
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-static">
+            <div class="row no-gutters">
+                <div class="col-md-8">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4 d-none d-md-block d-lg-block d-xl-block decor">
+        <div class="row no-gutters card-ft-box">
+            <div class="col-md-9">
+                <div class="card-feature-light-1 animate__animated animate__slideInDown">
+
+                </div>
+                <div class="card-feature-light-1-dark animate__animated animate__zoomIn delay-4">
+                    <img src="https://sinta.kemdikbud.go.id/public/assets/img/analytic.png" height="150px" alt="Responsive image">
+                    <div class="mt-1 mb-3">Get more detailed information with SINTA Insight</div>
+                    <a href="https://sinta.kemdikbud.go.id/insight" class="btn btn-warning btn-lg btn-block">Go to
+                        Insight</a>
+                </div>
+                <div class="card-feature-light-1-bt animate__animated animate__slideInUp delay-1" style="padding: 8px !important;">
+<!--                    <div class="copyright-box" style="padding: 0px !important;">
+                        <br>
+                        <div class="mt-1 mb-3">&nbsp;</div>
+                        <div class="row">
+                            <div class="col-md-3" style="margin-left: 8px;">
+                                <img src="https://sinta.kemdikbud.go.id/public/assets/img/dikbud_logo.png" alt="kemdikbud" title="Kementerian Pendidikan dan Kebudayaan">
+                                 <div class="title">KEMDIKBUD</div> 
+                                 <div class="subtitle">Kementrian Riset dan Teknologi / Badan Riset & Inovasi Nasional</div> 
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://sinta.kemdikbud.go.id/public/assets/img/brin_logo.png" alt="brin" title="Badan Riset dan Inovasi Nasional">                    
+                                 <div class="title">BRIN</div> 
+                                 <div class="subtitle">Kementrian Riset dan Teknologi / Badan Riset & Inovasi Nasional</div> 
+                            </div>
+
+                            <div class="col-md-5" style="border-left: 2px solid #FFFFFF;">
+                                <img src="https://sinta.kemdikbud.go.id/public/assets/img/lpdp_putih_logo.png" alt="LPDP" title="Lembaga Pengelola Dana Pendidikan">
+                                 <div class="title">LPDP</div> 
+                                 <div class="subtitle">Kementrian Riset dan Teknologi / Badan Riset & Inovasi Nasional</div> 
+                            </div>
+
+                        </div>
+                        <br>
+                        <div class="subtitle">copyright &copy 2020</div>
+                         <img src="https://sinta.kemdikbud.go.id/public/assets/img/ristekbrin_logo.png" alt="ristekbrin">
+                        <div class="title">&copy Kemenristek/BRIN 2020</div>
+                        <div class="subtitle">Kementrian Riset dan Teknologi / Badan Riset & Inovasi Nasional</div> 
+                    </div>-->
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-feature-light-2 animate__animated animate__slideInRight delay-3">
+
+                </div>
+                <div class="card-feature-light-2-bt animate__animated animate__slideInRight delay-4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    
+
+    <!-- JavaScript -->
+    <!-- jQuery first, then others -->
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/popper.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/select2.full.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/morphext.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/echarts/dist/echarts-en.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/echarts/dist/theme/macarons.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://sinta.kemdikbud.go.id/public/assets/js/jquery.autocomplete.js" crossorigin="anonymous"></script>     -->
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/autocomplete/jquery.autocomplete.js" crossorigin="anonymous"></script>
+       
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/d3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/topojson.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/datamaps.idn.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/chartjs/chart.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    
+    <script src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script>
+    <script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        setTimeout(function() {
+            $('#alert-notif').fadeOut('fast');
+        }, 3000);
+
+        function show_faq(id){
+            $('#' + id).slideToggle();
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
+        $('.countrypicker').countrypicker();
+    </script>
+
+    <script>
+        $(document).ready(function(){  
+            $(function () {
+                $('.datepicker-year').datepicker({
+                    autoclose: true,
+                    endDate: new Date(),
+                    format: 'yyyy',
+                    viewMode: "years", 
+                    minViewMode: "years"
+                });
+            });
+
+            $(function () {
+                $('.datepicker-date').datepicker({
+                    todayHighlight: true,
+                    endDate: new Date(),
+                    autoclose: true,
+                    format: 'yyyy-mm-dd',
+                    maxDate: '0'
+                });
+            });
+        });
+    </script>
+	
+	<script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        });
+
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
+    </script>
+
+    <script>
+
+    $("#more_statistic").click(function () {
+        $("#statistic2").slideToggle(500);
+    });
+
+    $(document).ready(function () {
+        $(".select2").select2({
+            minimumResultsForSearch: -1
+        });
+        $('.rotate').rotaterator({
+            fadeSpeed: 500,
+            pauseSpeed: 3000
+        });
+    });
+</script>
+
+    
+
+</body>
+
+</html>

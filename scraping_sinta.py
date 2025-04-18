@@ -6,6 +6,14 @@ import os
 import random
 import json
 from tqdm import tqdm
+import argparse
+
+# Add command line argument parsing
+parser = argparse.ArgumentParser(description='Web scraping script for Sinta Kemdikbud website')
+parser.add_argument("--start", type=int, help="Override starting page number")
+parser.add_argument("--end", type=int, help="Override ending page number")
+parser.add_argument("--reset", action="store_true", help="Ignore checkpoint and start fresh")
+args = parser.parse_args()
 
 # Function to create a session with rotating user agents
 def create_session():
@@ -40,24 +48,54 @@ base_url = "https://sinta.kemdikbud.go.id/google?page="
 # Inisialisasi sesi request
 session = create_session()
 
-# Rentang halaman yang ingin di-scrape
+# Default settings
 start_page = 6673
 end_page = 7506
+
+# Override settings if provided through command line
+if args.start:
+    start_page = args.start
+    print(f"Overriding start page to: {start_page}")
+    
+if args.end:
+    end_page = args.end
+    print(f"Overriding end page to: {end_page}")
 
 # Simpan semua hasil scraping
 all_data = []
 
-# Load checkpoint if exists
+# Load checkpoint if exists and not resetting
 checkpoint_file = "data/checkpoint.json"
-if os.path.exists(checkpoint_file):
+if os.path.exists(checkpoint_file) and not args.reset:
     try:
         with open(checkpoint_file, "r", encoding="utf-8") as f:
             checkpoint = json.load(f)
         all_data = checkpoint["data"]
-        start_page = checkpoint["last_page"] + 1
-        print(f"Melanjutkan scraping dari halaman {start_page}...")
+        checkpoint_page = checkpoint["last_page"] + 1
+        print(f"Checkpoint ditemukan. Halaman terakhir: {checkpoint['last_page']}")
+        
+        # Use checkpoint only if not overridden by command line
+        if not args.start:
+            start_page = checkpoint_page
+            print(f"Melanjutkan scraping dari halaman {start_page}...")
     except Exception as e:
-        print(f"⚠️ Error loading checkpoint: {e}")
+        print(f"Error loading checkpoint: {e}")
+        print(f"Starting from the original start_page: {start_page}")
+elif args.reset:
+    print("Reset dipilih, mengabaikan checkpoint dan memulai dari awal.")
+
+# Confirmation before starting
+confirm = input(f"Script akan mulai scraping dari halaman {start_page} sampai {end_page}. Lanjutkan? (y/n): ")
+if confirm.lower() != 'y':
+    new_start = input("Masukkan nomor halaman awal (tekan Enter untuk menggunakan nilai sebelumnya): ")
+    if new_start.strip():
+        start_page = int(new_start)
+    
+    new_end = input("Masukkan nomor halaman akhir (tekan Enter untuk menggunakan nilai sebelumnya): ")
+    if new_end.strip():
+        end_page = int(new_end)
+    
+    print(f"Rentang halaman diperbarui: {start_page} - {end_page}")
 
 # Function to save checkpoint
 def save_checkpoint(data, last_page):
@@ -77,9 +115,11 @@ try:
         print(f"Scraping halaman {page}...")
         
         max_retries = 3
+        response = None
         for attempt in range(max_retries):
             try:
                 if attempt > 0:
+                    print(f"Percobaan ke-{attempt+1}...")
                     session = create_session()
                 
                 response = session.get(url, timeout=30)
@@ -97,7 +137,7 @@ try:
                 print(f"Error pada percobaan {attempt+1}: {e}")
                 time.sleep(5)
         
-        if response.status_code != 200:
+        if not response or response.status_code != 200:
             print(f"Gagal mengakses halaman {page} setelah {max_retries} percobaan, lanjut ke halaman berikutnya...")
             continue
         
@@ -107,10 +147,14 @@ try:
         articles = soup.find_all("div", class_="ar-title")
         
         if not articles:
-            print(f"Tidak ditemukan artikel pada halaman {page}. Kemungkinan struktur halaman berubah.")
+            print(f"Tidak ditemukan artikel pada halaman {page}. Mencoba alternatif...")
             articles = soup.find_all("div", class_="article-title")
             if not articles:
                 print(f"Tidak dapat menemukan artikel dengan class alternatif. Melewati halaman {page}.")
+                # Debug help - save page content to investigate
+                with open(f"data/debug_page_{page}.html", "w", encoding="utf-8") as f:
+                    f.write(response.text)
+                print(f"Konten halaman disimpan di data/debug_page_{page}.html untuk investigasi.")
                 continue
         
         page_data = []
@@ -169,21 +213,34 @@ try:
 
 except KeyboardInterrupt:
     print("\n Scraping dihentikan manual oleh pengguna")
-    save_checkpoint(all_data, page)
+    if 'page' in locals():
+        save_checkpoint(all_data, page)
 except Exception as e:
     print(f"\n Error tidak terduga: {e}")
+    import traceback
+    traceback.print_exc()
     if 'page' in locals():
         save_checkpoint(all_data, page)
 
 # Konversi ke DataFrame dan simpan ke CSV
 df = pd.DataFrame(all_data)
-df.to_csv("data/hasil_scraping.csv", index=False)
+output_file = f"data/hasil_scraping_{start_page}_to_{end_page if 'page' not in locals() else page}.csv"
+df.to_csv(output_file, index=False)
 print(f"Scraping selesai! Total {len(all_data)} artikel dari {start_page} sampai {end_page if 'page' not in locals() else page}")
-print("Data disimpan dalam data/hasil_scraping.csv")
+print(f"Data disimpan dalam {output_file}")
 
 # Tampilkan statistik
-print("\nStatistik:")
-print(f"Total artikel: {len(df)}")
-print(f"Rentang tahun: {df['Tahun'].min()} - {df['Tahun'].max()}")
-print(f"Total sitasi: {df['Sitasi'].astype(int).sum()}")
-print(f"Institusi unik: {len(df['Institusi'].unique())}")
+if not df.empty:
+    print("\nStatistik:")
+    print(f"Total artikel: {len(df)}")
+    try:
+        print(f"Rentang tahun: {df['Tahun'].min()} - {df['Tahun'].max()}")
+    except:
+        print("Tidak dapat menghitung rentang tahun")
+    try:
+        print(f"Total sitasi: {df['Sitasi'].astype(int).sum()}")
+    except:
+        print("Tidak dapat menghitung total sitasi")
+    print(f"Institusi unik: {len(df['Institusi'].unique())}")
+else:
+    print("Tidak ada data yang berhasil di-scrape.")

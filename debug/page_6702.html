@@ -1,0 +1,595 @@
+<script>if ( window.history.replaceState ) {  window.history.replaceState( null, null, window.location.href );}</script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SINTA - Science and Technology Index</title>
+    <meta name="description" content="SINTA | Science and Technology Index">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- CSS -->
+    <link rel="shortcut icon" type="image/png" href="https://sinta.kemdikbud.go.id/public/assets/img/favicon_sinta.png" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/bootstrap.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/bootstrap-litera.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/select2.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/select2-bootstrap4.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/elusive-icons.min.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/animate.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/morphext.css">
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/main.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/flag-icons.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/responsive.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/datamaps.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/plugin/autocomplete/jquery.autocomplete.css" crossorigin="anonymous" />
+    <!-- <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/assets/css/autocomplete.css" crossorigin="anonymous" /> -->
+    <link rel="stylesheet" href="https://sinta.kemdikbud.go.id/public/author/styles/alert.css">
+
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-select@1.12.4/dist/css/bootstrap-select.min.css" type="text/css" />
+    <link rel="stylesheet" href="//unpkg.com/bootstrap-select-country@4.0.0/dist/css/bootstrap-select-country.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" type="text/css" />
+
+    <style type="text/css">
+        #mynetwork {
+            width: auto;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+
+        
+    </style>
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+
+
+</head>
+
+<body>
+
+    
+    
+    
+<div class="row no-gutters">
+    <div class="col-md-8">
+
+        <div class="navi animate__animated animate__slideInDown"  >
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="https://sinta.kemdikbud.go.id">
+            <img src="https://sinta.kemdikbud.go.id/public/assets/img/brand_sinta.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+            <span class="brand-text">SINTA</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id"><i class="el el-home-alt"></i></a>
+                </li>
+                
+                <!-- <li class="nav-item">
+                                <a class="nav-link" href="#!">About</a>
+                            </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/authors">Author</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/subjects">Subjects</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Affiliations
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/affiliations">Affiliations</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/departments">Departments</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sources
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/journals">Journal</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/books">Book</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/iprs">IPR</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/researches">Researches</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/comservices">Comunity Services</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/scopus">Scopus Documents</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/home/checkquartilescopus">Check Quart. Scopus</a>
+                        <a class="dropdown-item" href="https://sinta.kemdikbud.go.id/google">GS Documents</a>
+                        
+                    </div>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/home/faq">FAQ</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://sinta.kemdikbud.go.id/wcu">WCU</a>
+                </li>
+                
+                                    <li class="nav-item">
+                        <a class="nav-link" href="https://sinta.kemdikbud.go.id/logins/registration">Registration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://sinta.kemdikbud.go.id/logins">Login</a>
+                    </li>
+                            </ul>
+        </div>
+    </nav>
+</div>
+
+        <div class="content">
+
+            <div class="title-list row">
+                <div class="col-md-2 mt-1">
+                    <h5>Google Scholar</h5>
+                </div>
+                
+                <div class="col-lg">
+                    <form>
+                        <label class="small-lbl">Search Google Scholar Documents</label>
+                        <!-- <div class="input-group input-group-sm mb-3"> -->
+                            <input type="text" class="form-control form-control-sm" name="q" placeholder="Search..." aria-label="Search" aria-describedby="basic-addon2">
+                            <!-- <div class="input-group-append"> -->
+                                <!-- <span class="input-group-text" id="basic-addon2"> -->
+                                    <!-- <a data-toggle="tooltip" data-placement="left" title="Advanced search" href="#!"><i class="el el-cog"></i></a> -->
+                                <!-- </span> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    </form>
+                </div>
+            </div>
+            <div class="content-list mt-5 pt-4">
+                <div class="card">
+                    <div class="card-body">
+                                                                            <nav aria-label="pagination-sample" class="mb-4 mt-2">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page=6701" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6700">6700</a></li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6701">6701</a></li>
+                                                                            <li class="page-item active"><a class="page-link" href="?page=6702">6702</a></li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6703">6703</a></li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6704">6704</a></li>
+                                                                        <li class="page-item ">
+                                        <a class="page-link" href="?page=6703">Next</a>
+                                    </li>
+                                </ul>
+                                <div class="text-center pagination-text"><small>Page 6.702 of 10.000 | Total Records 100.000</small></div>
+                            </nav>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Microbiological Assessment of Fish Sausages Coated with Smoked-Edible Film, and Stored in Room and Refrigerator Temperatures'" target="_blank">
+                                            Microbiological Assessment of Fish Sausages Coated with Smoked-Edible Film, and Stored in Room and Refrigerator Temperatures                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : HA Dien, RI Montolalu, F Mentang, J Keno, RS Burdam, S Berhimpon</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>World Academy of Science, Engineering and Technology, International Journal &#8230;</a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2015</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 0 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Sosialisasi Pembuatan Disinfektan dari Cairan Pemutih untuk Sterilisasi Kandang Ternak di Desa Kwarakan Kecamatan Kaloran Kabupaten Temanggung'" target="_blank">
+                                            Sosialisasi Pembuatan Disinfektan dari Cairan Pemutih untuk Sterilisasi Kandang Ternak di Desa Kwarakan Kecamatan Kaloran Kabupaten Temanggung                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : FD Putri, DA Suseno</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>Jurnal Bina Desa 5 (2), 175-179, 2023 </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2023</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 0 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Edukasi tentang pentingnya gizi olahraga pada atlet basket kursi roda'" target="_blank">
+                                            Edukasi tentang pentingnya gizi olahraga pada atlet basket kursi roda                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : N Gifari, S Hadianti, S Nurjadin, M Sapang</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>Asmat: Jurnal Pengabmas 1 (2), 111-118, 2022 </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2022</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 3 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'PENELITIANHASILHUTAN'" target="_blank">
+                                            PENELITIANHASILHUTAN                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : KKDANPH HUTAN</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>Jurnal Penelitian Hasil Hutan adalah publikasi ilmiah bidang hasil hutan 32 (4)</a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2014</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 0 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Fiqh Muamalah (sejarah, hukum dan perkembangannya)'" target="_blank">
+                                            Fiqh Muamalah (sejarah, hukum dan perkembangannya)                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : R Nurdin</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>Banda Aceh: PeNA, 2010 </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2010</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 149 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Studi Meta Analisis Problem Based Learning Dalam Pembelajaran Fisika'" target="_blank">
+                                            Studi Meta Analisis Problem Based Learning Dalam Pembelajaran Fisika                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : RD Astutik, MNR Jauhariyah</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>ORBITA: Jurnal Kajian, Inovasi dan Aplikasi Pendidikan Fisika 7 (1), 159-168, 2021 </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2021</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 6 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Keanekaragaman Tumbuhan Paku (Pteridophyta) Di Kawasan Wisata Sungai Pucok Krueng Raba Kecamatan Lhoknga Kabupaten Aceh Besar Sebagai Media Pendukung Pembelajaran Pada Materi &#8230;'" target="_blank">
+                                            Keanekaragaman Tumbuhan Paku (Pteridophyta) Di Kawasan Wisata Sungai Pucok Krueng Raba Kecamatan Lhoknga Kabupaten Aceh Besar Sebagai Media Pendukung Pembelajaran Pada Materi &#8230;                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : M Karlita</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>UIN AR-RANIRY, 2020 </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2020</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 4 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Analisis tindak tutur direktif pada film Bulan terbelah di langit Amerika sutradara Hanum Salsabiela Rais dan skenario pembelajarannya di kelas xi sma'" target="_blank">
+                                            Analisis tindak tutur direktif pada film Bulan terbelah di langit Amerika sutradara Hanum Salsabiela Rais dan skenario pembelajarannya di kelas xi sma                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : EAP Arum, N Setyorini</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>Surya Bahtera 5, 49, 2017 </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2017</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 8 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Desipradani, Gita. 2017. Akuntansi Hijau Berbasis Etika Bisnis: Implementasi di RSUA Ponorogo, Jawa Timur'" target="_blank">
+                                            Desipradani, Gita. 2017. Akuntansi Hijau Berbasis Etika Bisnis: Implementasi di RSUA Ponorogo, Jawa Timur                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : A Marina, SI Wahjono</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i>Journal BALANCE: Economic, Business, Management and Accounting Journal 14 &#8230;, 0 </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 0000</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 27 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                            <div class="ar-list-item mb-4">
+                                    <div class="ar-title">
+                                        <a href="https://scholar.google.com/scholar?q=+intitle:'Single Phase Power Sensing with Developed Voltage and Current Sensors'" target="_blank">
+                                            Single Phase Power Sensing with Developed Voltage and Current Sensors                                        </a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a href="#!">Authors : V Mudeng, H Wicaksono, AT Destanio, Y Nainggolan</a>
+                                        <a href="#!" class="ar-pub"><i class="el el-book"></i></a>
+                                    </div>
+                                    <div class="ar-meta">
+                                        <a class="ar-year" href="#!"><i class="zmdi zmdi-calendar"></i> 2020</a>
+                                        <a class="ar-cited" href="#!"><i class="zmdi zmdi-comment-list"></i> 0 cited</a>
+                                    </div>
+                                    <hr>
+                                </div>
+                                                        <nav aria-label="pagination-sample" class="mb-4 mt-2">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page=6701" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6700">6700</a></li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6701">6701</a></li>
+                                                                            <li class="page-item active"><a class="page-link" href="?page=6702">6702</a></li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6703">6703</a></li>
+                                                                            <li class="page-item "><a class="page-link" href="?page=6704">6704</a></li>
+                                                                        <li class="page-item ">
+                                        <a class="page-link" href="?page=6703">Next</a>
+                                    </li>
+                                </ul>
+                                <div class="text-center pagination-text"><small>Page 6.702 of 10.000 | Total Records 100.000</small></div>
+                            </nav>
+                                            </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-4 d-none d-md-block d-lg-block d-xl-block decor animate__animated animate__slideInRight">
+        <div class="side-top row">
+            <div class="col-md-4">
+                Get More with SINTA Insight
+            </div>
+            <div class="col-md-8">
+                <a name="" id="" class="btn btn-warning btn-block btn-md" href="https://sinta.kemdikbud.go.id/insight" role="button">Go to Insight</a>
+            </div>
+        </div>
+        <div class="side-content">              
+            <div class="row stat-card mb-4">
+                <div class="col">
+                    <div class="card bg-card-red">
+                        <div class="card-body">    
+                            <h6>Sinta Acreditation</h6>     
+                            <div id="akreditation-pie" style="height: 210px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row stat-card mb-4" style="margin-top: -15px;">
+                <div class="col">
+                    <div class="card bg-card-default">
+                        <div class="card-body">
+                                                            <table class="table table-striped table-sm">
+                                    <tr>
+                                        <th>Acreditation</th>
+                                        <th width="50">Count</th>
+                                    </tr>
+                                                                            <tr>
+                                            <td>no-S</td>
+                                            <td>738.850</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>S1</td>
+                                            <td>25.755</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>S2</td>
+                                            <td>135.554</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>S3</td>
+                                            <td>188.387</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>S4</td>
+                                            <td>369.839</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>S5</td>
+                                            <td>317.586</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>S6</td>
+                                            <td>39.638</td>
+                                        </tr>
+                                                                            <tr>
+                                            <td>S92</td>
+                                            <td>47</td>
+                                        </tr>
+                                                                    </table>
+                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-sm-block d-md-none">
+        <div class="side-top-sm row">
+            <div class="col-md-4">
+                Get More with SINTA Insight
+            </div>
+            <div class="col-md-8">
+                <a name="" id="" class="btn btn-warning btn-block btn-md" href="https://sinta.kemdikbud.go.id/insight" role="button">Go to Insight</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+    
+
+    <!-- JavaScript -->
+    <!-- jQuery first, then others -->
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/popper.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/select2.full.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/morphext.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/echarts/dist/echarts-en.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/js/echarts/dist/theme/macarons.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://sinta.kemdikbud.go.id/public/assets/js/jquery.autocomplete.js" crossorigin="anonymous"></script>     -->
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/autocomplete/jquery.autocomplete.js" crossorigin="anonymous"></script>
+       
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/d3.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/topojson.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/datamaps/datamaps.idn.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://sinta.kemdikbud.go.id/public/assets/plugin/chartjs/chart.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    
+    <script src="//unpkg.com/bootstrap-select@1.12.4/dist/js/bootstrap-select.min.js"></script>
+    <script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        setTimeout(function() {
+            $('#alert-notif').fadeOut('fast');
+        }, 3000);
+
+        function show_faq(id){
+            $('#' + id).slideToggle();
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
+        $('.countrypicker').countrypicker();
+    </script>
+
+    <script>
+        $(document).ready(function(){  
+            $(function () {
+                $('.datepicker-year').datepicker({
+                    autoclose: true,
+                    endDate: new Date(),
+                    format: 'yyyy',
+                    viewMode: "years", 
+                    minViewMode: "years"
+                });
+            });
+
+            $(function () {
+                $('.datepicker-date').datepicker({
+                    todayHighlight: true,
+                    endDate: new Date(),
+                    autoclose: true,
+                    format: 'yyyy-mm-dd',
+                    maxDate: '0'
+                });
+            });
+        });
+    </script>
+	
+	<script>
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        });
+
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
+    </script>
+
+    
+<script>
+    var quartilePie = echarts.init(document.getElementById('akreditation-pie'), 'macarons');
+    optionQ = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            show: true,
+            orient: 'vertical',
+            left: 10,
+            top: 34,
+            data: [
+                                    "no-S",
+                                    "S1",
+                                    "S2",
+                                    "S3",
+                                    "S4",
+                                    "S5",
+                                    "S6",
+                                    "S92",
+                            ]
+        },
+        grid: {
+            left: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+        },
+        series: [{
+            name: 'Sinta Acreditation',
+            type: 'pie',
+            radius: ['50%', '80%'],
+            avoidLabelOverlap: false,
+            center: ['50%', '50%'],
+            label: {
+                show: true,
+                position: 'inside',
+                formatter: '{b}'
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: '11',
+                }
+            },
+            labelLine: {
+                show: false
+            },
+            data: [
+                                    {
+                        value: 738850,
+                        name: "no-S",
+                    },                
+                                    {
+                        value: 25755,
+                        name: "S1",
+                    },                
+                                    {
+                        value: 135554,
+                        name: "S2",
+                    },                
+                                    {
+                        value: 188387,
+                        name: "S3",
+                    },                
+                                    {
+                        value: 369839,
+                        name: "S4",
+                    },                
+                                    {
+                        value: 317586,
+                        name: "S5",
+                    },                
+                                    {
+                        value: 39638,
+                        name: "S6",
+                    },                
+                                    {
+                        value: 47,
+                        name: "S92",
+                    },                
+                            ]
+        }]
+    };
+    quartilePie.setOption(optionQ);
+</script>
+
+
+    
+
+</body>
+
+</html>

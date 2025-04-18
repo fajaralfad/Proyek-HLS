@@ -1,0 +1,6 @@
+2025-03-27 21:57:17,767 - INFO: ====== WebDriver manager ======
+2025-03-27 21:57:18,673 - INFO: Get LATEST chromedriver version for google-chrome
+2025-03-27 21:57:20,033 - INFO: Get LATEST chromedriver version for google-chrome
+2025-03-27 21:57:20,126 - INFO: Driver [C:\Users\muhammad fajar alfad\.wdm\drivers\chromedriver\win64\134.0.6998.165\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-27 21:57:33,638 - ERROR: Gagal login: 'SintaScraper' object has no attribute 'get_login_credentials'
+2025-03-27 21:57:35,791 - INFO: Browser ditutup
